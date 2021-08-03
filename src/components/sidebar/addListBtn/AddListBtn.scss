@@ -1,0 +1,136 @@
+.add-list-btn__button {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  color: #767676;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-list-btn__button:hover {
+  color: black;
+}
+
+// -------------------
+
+.add-list-popup {
+  position: absolute;
+  bottom: -130px;
+  left: 50px;
+
+  width: 235px;
+  height: 148px;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  &__close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: 0.3s;
+  }
+  &__close-btn:hover {
+    top: -12px;
+    right: -12px;
+
+    width: 25px;
+    height: 25px;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &__input {
+    width: 200px;
+    height: 32px;
+    background: #ffffff;
+    border: 1px solid #efefef;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+  &__input::placeholder {
+    padding: 5%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.15px;
+    color: #c7c7c7;
+  }
+
+  &__color-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+
+    transition: .3s;
+    &__wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  &__color-btn:hover {
+   opacity: .5;
+  }
+  &__add-btn {
+    width: 200px;
+    height: 40px;
+    background: #4dd599;
+    border-radius: 4px;
+    border-style: unset;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #ffffff;
+    cursor: pointer;
+
+    transition: .3s;
+
+  }
+  &__add-btn:hover {
+    background: #15af6c;
+
+
+  }
+}
+
+
+.add-list-popup__active{
+  border: 2px solid #efefef;
+  box-shadow: 2px 2px 2px rgba(0, 0, 1, 0.4);
+
+}

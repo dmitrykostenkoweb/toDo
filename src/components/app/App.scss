@@ -1,0 +1,15 @@
+.todo {
+  max-width: 750px;
+  min-height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.3);
+  border-radius: 10px;
+  display: flex;
+}
+.active {
+  border: 1px solid black;
+}

@@ -1,0 +1,20 @@
+.todo {
+  max-width: 750px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  -webkit-box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.3);
+          box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.3);
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.active {
+  border: 1px solid black;
+}
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,60 @@
+{
+  "lists": [
+    {
+      "id": 2,
+      "label": "Frontend",
+      "color": "#64C4ED"
+    },
+    {
+      "id": 3,
+      "label": "Films",
+      "color": "#FFBBCC"
+    },
+    {
+      "id": 4,
+      "label": "Books",
+      "color": "#B6E6BD"
+    },
+    {
+      "id": 5,
+      "label": "Other",
+      "color": "#C9D1D3"
+    },
+    {
+      "label": "Sport",
+      "color": "#42B883",
+      "id": 6
+    },
+    {
+      "label": "Create App 'ReactJS ToDo'",
+      "color": "#64C4ED",
+      "id": 7
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "listId": 2,
+      "text": "Изучить JavaScript",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "listId": 2,
+      "text": "Изучить паттерны проектирования",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "listId": 2,
+      "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "listId": 2,
+      "text": "Redux (redux-observable, redux-saga)",
+      "completed": false
+    }
+  ]
+}
