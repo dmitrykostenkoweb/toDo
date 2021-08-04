@@ -75,14 +75,17 @@
     box-sizing: border-box;
     border-radius: 4px;
   }
-  &__input::placeholder {
+
+  &__input,
+  select,
+  textarea {
     padding: 5%;
     text-align: center;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.15px;
-    color: #c7c7c7;
+    color: black;
   }
 
   &__color-btn {
@@ -94,14 +97,14 @@
     margin-right: 5px;
     cursor: pointer;
 
-    transition: .3s;
+    transition: 0.3s;
     &__wrapper {
       display: flex;
       flex-direction: row;
     }
   }
   &__color-btn:hover {
-   opacity: .5;
+    opacity: 0.5;
   }
   &__add-btn {
     width: 200px;
@@ -118,19 +121,14 @@
     color: #ffffff;
     cursor: pointer;
 
-    transition: .3s;
-
+    transition: 0.3s;
   }
   &__add-btn:hover {
     background: #15af6c;
-
-
   }
 }
 
-
-.add-list-popup__active{
+.add-list-popup__active {
   border: 2px solid #efefef;
   box-shadow: 2px 2px 2px rgba(0, 0, 1, 0.4);
-
 }

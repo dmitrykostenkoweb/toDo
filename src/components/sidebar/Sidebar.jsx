@@ -18,13 +18,13 @@ const Sidebar = ({
   console.log(list);
 
   const elements = list.map((item) => {
-    const { id, label } = item;
+    const { id, label, color } = item;
     const ellipseStyle = {
-      backgroundColor: `${item.color}`,
+      backgroundColor: `${color}`,
     };
 
     let classNameList = "sidebar__list";
-    if (activeItem && activeItem.id === item.id) {
+    if (activeItem && activeItem.id === id) {
       classNameList += " sidebar-item__active";
     }
 

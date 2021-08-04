@@ -9,20 +9,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 .header-label {
-  font-style: normal;
   font-weight: bold;
   font-size: 32px;
-  line-height: 39px;
   color: #64c4ed;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 320px;
+  height: 1.2em;
+  white-space: nowrap;
+  text-align: center;
 }
 .header-edit-button {
   display: block;
   width: 15px;
   height: 15px;
   cursor: pointer;
-  padding: 20px;
+  padding: 0 20px;
 }
 .header-edit-button :hover {
   animation: shake 0.5s ease-in;

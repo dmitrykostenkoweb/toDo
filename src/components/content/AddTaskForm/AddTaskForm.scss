@@ -1,0 +1,96 @@
+.add-tasks__form {
+  &-new {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    img {
+      width: 15px;
+      height: 15px;
+      opacity: 0.7;
+      transition: 0.2s;
+    }
+    span {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.15px;
+
+      color: #b4b4b4;
+      transition: 0.2s;
+    }
+  }
+  &-new:hover {
+    img {
+      opacity: 1;
+    }
+    span {
+      color: #969696;
+    }
+  }
+  &-active {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    &-input {
+      border: 1px solid #efefef;
+      max-width: 300px;
+      height: 40px;
+      border-radius: 5px;
+    }
+    // &-input::placeholder {
+    //     padding: 20px;
+    //   font-weight: 400;
+    //   font-size: 14px;
+    //   color: #c7c7c7;
+    // }
+    &-input, select, textarea {
+        padding: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      color: black
+    }
+    &-btns {
+      display: flex;
+      gap: 20px;
+    }
+    &__addBtn {
+      width: 150px;
+      height: 35px;
+      background: #4dd599;
+      border-radius: 4px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      letter-spacing: 0.15px;
+      color: #ffffff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    &__addBtn:hover {
+      background: #15af6c;
+    }
+    &__cancelBtn {
+      width: 100px;
+      height: 35px;
+      background: #f4f6f8;
+      color: #9c9c9c;
+
+      border-radius: 4px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      letter-spacing: 0.15px;
+
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    &__cancelBtn:hover {
+      background: #c5c5c5;
+      color: white;
+    }
+  }
+}

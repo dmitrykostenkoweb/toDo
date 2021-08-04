@@ -7,7 +7,7 @@
     },
     {
       "id": 3,
-      "label": "Films",
+      "label": null,
       "color": "#FFBBCC"
     },
     {
@@ -26,9 +26,29 @@
       "id": 6
     },
     {
-      "label": "Create App 'ReactJS ToDo'",
+      "label": null,
       "color": "#64C4ED",
       "id": 7
+    },
+    {
+      "label": "test",
+      "color": "#64C4ED",
+      "id": 8
+    },
+    {
+      "label": null,
+      "color": "#FFBBCC",
+      "id": 9
+    },
+    {
+      "label": "dsdsdsdsd",
+      "color": "#C9D1D3",
+      "id": 10
+    },
+    {
+      "label": "rrere",
+      "color": "#C9D1D3",
+      "id": 11
     }
   ],
   "tasks": [

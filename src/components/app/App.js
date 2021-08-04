@@ -37,6 +37,16 @@ function App() {
     setLists(newArr);
   };
 
+  const onEditListTitle = (id, label) => {
+    console.log(`${id}, ${label}`);
+    const newArr = lists.map((item) => {
+      if (item.id === id) {
+        item.label = label;
+      }
+      return item;
+    });
+    setLists(newArr);
+  };
   return (
     <div className="todo">
       <Sidebar
@@ -49,7 +59,11 @@ function App() {
         activeItem={activeItem}
       />
 
-      <Content tasks={activeItem} className="todo__content" />
+      <Content
+        onEditTitle={onEditListTitle}
+        tasks={activeItem}
+        className="todo__content"
+      />
     </div>
   );
 }
