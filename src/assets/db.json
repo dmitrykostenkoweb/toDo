@@ -6,11 +6,6 @@
       "color": "#64C4ED"
     },
     {
-      "id": 3,
-      "label": null,
-      "color": "#FFBBCC"
-    },
-    {
       "id": 4,
       "label": "Books",
       "color": "#B6E6BD"
@@ -24,31 +19,6 @@
       "label": "Sport",
       "color": "#42B883",
       "id": 6
-    },
-    {
-      "label": null,
-      "color": "#64C4ED",
-      "id": 7
-    },
-    {
-      "label": "test",
-      "color": "#64C4ED",
-      "id": 8
-    },
-    {
-      "label": null,
-      "color": "#FFBBCC",
-      "id": 9
-    },
-    {
-      "label": "dsdsdsdsd",
-      "color": "#C9D1D3",
-      "id": 10
-    },
-    {
-      "label": "rrere",
-      "color": "#C9D1D3",
-      "id": 11
     }
   ],
   "tasks": [
@@ -75,6 +45,90 @@
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
       "completed": false
+    },
+    {
+      "listId": 4,
+      "text": "Test",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "listId": 4,
+      "text": "Test",
+      "completed": false,
+      "id": 6
+    },
+    {
+      "listId": 4,
+      "text": "Test",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "listId": 5,
+      "text": "TestTestTest",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "listId": 5,
+      "text": "Test",
+      "completed": false,
+      "id": 9
+    },
+    {
+      "listId": 5,
+      "text": "Test",
+      "completed": false,
+      "id": 10
+    },
+    {
+      "listId": 6,
+      "text": "Test",
+      "completed": false,
+      "id": 11
+    },
+    {
+      "listId": 4,
+      "text": "test",
+      "completed": false,
+      "id": 12
+    },
+    {
+      "listId": 2,
+      "text": "",
+      "completed": false,
+      "id": 13
+    },
+    {
+      "listId": 2,
+      "text": "sdw",
+      "completed": false,
+      "id": 14
+    },
+    {
+      "listId": 2,
+      "text": "dwewewe",
+      "completed": false,
+      "id": 15
+    },
+    {
+      "listId": 2,
+      "text": "",
+      "completed": false,
+      "id": 16
+    },
+    {
+      "listId": 2,
+      "text": "",
+      "completed": false,
+      "id": 17
+    },
+    {
+      "listId": 2,
+      "text": "lol",
+      "completed": false,
+      "id": 18
     }
   ]
 }

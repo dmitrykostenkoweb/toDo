@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 
-import AddTaskForm from './AddTaskForm/AddTaskForm'
+import AddTaskForm from "./AddTaskForm/AddTaskForm";
 
 import editButton from "../../assets/img/edit-button.svg";
 import "./Content.scss";
 
-const Content = ({ tasks, onEditTitle }) => {
+const Content = ({ tasks, onEditTitle, addTask }) => {
   if (!tasks) return null;
 
   const editTitle = () => {
@@ -75,7 +75,7 @@ const Content = ({ tasks, onEditTitle }) => {
         {!tasks.tasks.length && <h2>No Tasks</h2>}
         {elements}
       </div>
-      <AddTaskForm/>
+      <AddTaskForm tasks={tasks}  addTask={addTask}  />
     </div>
   );
 };

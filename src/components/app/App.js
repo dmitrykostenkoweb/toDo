@@ -28,6 +28,15 @@ function App() {
     const newArr = [...lists, newItem];
     setLists(newArr);
   };
+  const addTask = (listId, newTaskObj) => {
+    const newArr = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = [...item.tasks, newTaskObj];
+      }
+      return item;
+    });
+    setLists(newArr);
+  };
 
   const removeItem = (id) => {
     const index = lists.findIndex((elem) => elem.id === id);
@@ -62,6 +71,7 @@ function App() {
       <Content
         onEditTitle={onEditListTitle}
         tasks={activeItem}
+        addTask={addTask}
         className="todo__content"
       />
     </div>

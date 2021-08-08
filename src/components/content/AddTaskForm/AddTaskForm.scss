@@ -72,6 +72,10 @@
     &__addBtn:hover {
       background: #15af6c;
     }
+    &__addBtn:disabled{
+      background: #d8d8d8;
+
+    }
     &__cancelBtn {
       width: 100px;
       height: 35px;

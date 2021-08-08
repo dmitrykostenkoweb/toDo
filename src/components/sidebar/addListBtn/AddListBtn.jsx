@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 
 import "./AddListBtn.scss";
 
 import closeFull from "../../../assets/img/close-full.svg";
 import plus from "../../../assets/img/plus.svg";
-
 
 const AddListBtn = ({ colors, addItem }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
@@ -13,27 +12,31 @@ const AddListBtn = ({ colors, addItem }) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
   const addList = () => {
     if (!inputValue) {
       alert("Enter the name of the list");
       return;
     }
-    setIsLoading(true)
-    axios.post('  http://localhost:3001/lists', {
-      label: inputValue, color: selectedColor
-    }).then(({data}) =>{
-   addItem(data);
-   setVisiblePopup(false)
-
-    }).finally(() =>{
-      setIsLoading(false)
-
-    })
- 
+    setIsLoading(true);
+    axios
+      .post("  http://localhost:3001/lists", {
+        label: inputValue,
+        color: selectedColor,
+      })
+      .then(({ data }) => {
+        addItem(data);
+        setVisiblePopup(false);
+      }).catch(() =>{
+        alert('error while adding list')
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setInputValue('')
+      });
   };
 
   const colorsBtn = colors.map((item) => {
+    
     const backBtnColor = {
       backgroundColor: `${item.color}`,
     };
@@ -77,16 +80,17 @@ const AddListBtn = ({ colors, addItem }) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
             className="add-list-popup__input"
-            type="text"
+            // type="text"
             placeholder="Folder Name"
           />
           <div className="add-list-popup__color-btn__wrapper">{colorsBtn}</div>
-          <button onClick={()=>{
-addList();
-
-          }} className="add-list-popup__add-btn">
-            
-            {isLoading ? 'Adding..': 'Add'}
+          <button
+            onClick={() => {
+              addList();
+            }}
+            className="add-list-popup__add-btn"
+          >
+            {isLoading ? "Adding.." : "Add"}
           </button>
         </div>
       )}
