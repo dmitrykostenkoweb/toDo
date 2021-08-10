@@ -1,0 +1,85 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  h2 {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: #c9d1d3;
+  }
+}
+.tasks__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.checkbox {
+  input {
+    display: none;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 50%;
+    cursor: pointer;
+    svg {
+      position: relative;
+      left: 1px;
+    }
+  }
+  input:checked + label {
+    background-color: #4dd599;
+    svg {
+      path {
+        stroke: white;
+      }
+    }
+  }
+  &:hover {
+    label {
+      background-color: #f2f2f2;
+    }
+    svg {
+      path {
+        stroke: #b2b2b2;
+      }
+    }
+  }
+}
+
+.close-btn {
+  opacity: 0.5;
+}
+.close-btn:hover{
+    animation: shake 0.5s ease-in;
+
+}
+.tasks-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    opacity: 0;
+    transition: .2s;
+}
+.tasks-text{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width:250px;
+    height: 1.2em;
+    white-space: nowrap;
+    text-align: left;
+}
+.tasks__items:hover .tasks-actions{
+    opacity: 1;
+
+}

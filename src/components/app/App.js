@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.scss";
 import Sidebar from "../sidebar/Sidebar";
 import Content from "../content/Content";
+import Spinner from "../Spinner/Spinner";
 
 function App() {
   const colors = [
@@ -17,6 +18,7 @@ function App() {
   ];
   const [lists, setLists] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+  const [activeAllTasks, setActiveAllTasks] = useState(true);
 
   useEffect(() => {
     axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
@@ -44,10 +46,12 @@ function App() {
     const after = lists.slice(index + 1);
     const newArr = [...before, ...after];
     setLists(newArr);
+    axios.delete("http://localhost:3001/lists/" + id).catch(() => {
+      alert("error while deleting list");
+    });
   };
 
   const onEditListTitle = (id, label) => {
-    console.log(`${id}, ${label}`);
     const newArr = lists.map((item) => {
       if (item.id === id) {
         item.label = label;
@@ -56,99 +60,57 @@ function App() {
     });
     setLists(newArr);
   };
-  return (
-    <div className="todo">
-      <Sidebar
-        list={lists}
-        addItem={addItem}
-        removeItem={removeItem}
-        colors={colors}
-        className="todo__sidebar"
-        onClickItem={(item) => setActiveItem(item)}
-        activeItem={activeItem}
-      />
 
-      <Content
-        onEditTitle={onEditListTitle}
-        tasks={activeItem}
-        addTask={addTask}
-        className="todo__content"
-      />
+  return (
+    <div className="todo__wrapper">
+    <div  className="todo">
+      <div className="app-sidebar">
+        {lists ? (
+          <Sidebar
+            list={lists}
+            addItem={addItem}
+            removeItem={removeItem}
+            colors={colors}
+            className="todo__sidebar"
+            onClickItem={(item) => {
+              setActiveItem(item);
+              if (activeAllTasks === true) {
+                setActiveAllTasks(!activeAllTasks);
+              }
+            }}
+       
+            activeItem={activeItem}
+            setActiveAllTasks={setActiveAllTasks}
+            activeAllTasks={activeAllTasks}
+          />
+        ) : (
+          <Spinner />
+        )}
+      </div>
+      <div className="app-content">
+        {!activeAllTasks ? (
+          <Content
+            onEditTitle={onEditListTitle}
+            tasks={activeItem}
+            addTask={addTask}
+            className="todo__content"
+          />
+        ) : (
+          lists &&
+          lists.map((list) => (
+            <Content
+              key={list.id}
+              onEditTitle={onEditListTitle}
+              tasks={list}
+              addTask={addTask}
+              className="todo__content"
+            />
+          ))
+        )}
+      </div>
+    </div>
     </div>
   );
 }
 
 export default App;
-// export default class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       sidebarListItems: [
-//         { label: "Shops", color: "#42B883", id: 0 },
-//         { label: "Frontend", color: "#64C4ED", id: 1 },
-//         { label: "Films", color: "#FFBBCC", id: 2 },
-//         { label: "Books", color: "#B6E6BD", id: 3 },
-//         { label: "Other", color: "#C9D1D3", id: 4 },
-//       ],
-//     };
-//     this.colors = [
-//       { color: "#C9D1D3" },
-//       { color: "#42B883" },
-//       { color: "#64C4ED" },
-//       { color: "#FFBBCC" },
-//       { color: "#B6E6BD" },
-//       { color: "#C355F5" },
-//       { color: "#09011A" },
-//       { color: "#FF6464" },
-//     ];
-//     this.addItem = this.addItem.bind(this);
-//     this.removeItem = this.removeItem.bind(this);
-//   }
-// componentDidMount() {
-//   axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
-//     console.log(data);
-//     this.setState({ sidebarListItems: data });
-//     console.log("componentDidMount");
-//   });
-// }
-
-// addItem(newItem) {
-//   this.setState(({ sidebarListItems }) => {
-//     const newArr = [...sidebarListItems, newItem];
-
-//     return {
-//       sidebarListItems: newArr,
-//     };
-//   });
-// }
-
-// removeItem(id) {
-//   this.setState(({ sidebarListItems }) => {
-//     const index = sidebarListItems.findIndex((elem) => elem.id === id);
-
-//     const before = sidebarListItems.slice(0, index);
-//     const after = sidebarListItems.slice(index + 1);
-
-//     const newArr = [...before, ...after];
-//     return {
-//       sidebarListItems: newArr,
-//     };
-//   });
-// }
-
-//   render() {
-//     return (
-//       <div className="todo">
-//         <Sidebar
-//           addItem={this.addItem}
-//           removeItem={this.removeItem}
-//           colors={this.colors}
-//           sidebar={this.state.sidebarListItems}
-//           className="todo__sidebar"
-//         />
-
-//         <Content list={this.state.sidebarListItems} className="todo__content" />
-//       </div>
-//     );
-//   }
-// }

@@ -12,6 +12,13 @@ const AddListBtn = ({ colors, addItem }) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+
+
+
+
+
+
+
   const addList = () => {
     if (!inputValue) {
       alert("Enter the name of the list");

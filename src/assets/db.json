@@ -1,134 +1,28 @@
 {
   "lists": [
     {
-      "id": 2,
-      "label": "Frontend",
-      "color": "#64C4ED"
+      "label": "test",
+      "color": "#FF6464",
+      "id": 2
     },
     {
-      "id": 4,
-      "label": "Books",
-      "color": "#B6E6BD"
-    },
-    {
-      "id": 5,
-      "label": "Other",
-      "color": "#C9D1D3"
-    },
-    {
-      "label": "Sport",
-      "color": "#42B883",
-      "id": 6
+      "label": "ssdsds",
+      "color": "#C355F5",
+      "id": 3
     }
   ],
   "tasks": [
     {
-      "id": 1,
       "listId": 2,
-      "text": "Изучить JavaScript",
-      "completed": true
-    },
-    {
-      "id": 2,
-      "listId": 2,
-      "text": "Изучить паттерны проектирования",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "listId": 2,
-      "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
-      "completed": true
-    },
-    {
-      "id": 4,
-      "listId": 2,
-      "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
-    },
-    {
-      "listId": 4,
-      "text": "Test",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "listId": 4,
-      "text": "Test",
+      "text": "test",
       "completed": false,
       "id": 6
     },
     {
-      "listId": 4,
-      "text": "Test",
+      "listId": 3,
+      "text": "sdsd",
       "completed": false,
       "id": 7
-    },
-    {
-      "listId": 5,
-      "text": "TestTestTest",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "listId": 5,
-      "text": "Test",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "listId": 5,
-      "text": "Test",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "listId": 6,
-      "text": "Test",
-      "completed": false,
-      "id": 11
-    },
-    {
-      "listId": 4,
-      "text": "test",
-      "completed": false,
-      "id": 12
-    },
-    {
-      "listId": 2,
-      "text": "",
-      "completed": false,
-      "id": 13
-    },
-    {
-      "listId": 2,
-      "text": "sdw",
-      "completed": false,
-      "id": 14
-    },
-    {
-      "listId": 2,
-      "text": "dwewewe",
-      "completed": false,
-      "id": 15
-    },
-    {
-      "listId": 2,
-      "text": "",
-      "completed": false,
-      "id": 16
-    },
-    {
-      "listId": 2,
-      "text": "",
-      "completed": false,
-      "id": 17
-    },
-    {
-      "listId": 2,
-      "text": "lol",
-      "completed": false,
-      "id": 18
     }
   ]
 }

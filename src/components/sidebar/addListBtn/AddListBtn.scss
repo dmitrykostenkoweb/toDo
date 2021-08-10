@@ -21,11 +21,10 @@
 // -------------------
 
 .add-list-popup {
-  position: absolute;
-  bottom: -130px;
-  left: 50px;
-
-  width: 235px;
+  position: sticky;
+  
+  margin: 10px 0;
+  width: 220px;
   height: 148px;
   border: 1px solid #efefef;
   border-radius: 4px;

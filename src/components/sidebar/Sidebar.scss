@@ -1,46 +1,40 @@
+
 .sidebar {
-  position: relative;
-  background: #e5e5e5a1;
-  padding: 30px 50px;
+  padding: 10px 20px;
+
   &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
   }
+
   &__label {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
-    margin-bottom: 20px;
-
-    &-icon {
-      margin: 5px;
-      width: 12px;
-    }
-    &-text {
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 19px;
-      letter-spacing: 0.2px;
-      color: #000000;
-    }
+    margin-bottom: 10px;
+    cursor: pointer;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
   }
 
   // ...
   &__list {
     cursor: pointer;
-
     display: flex;
-    align-items: center;  
+    align-items: center;
     justify-content: space-between;
-
-    gap: 10px; 
+    gap: 10px;
 
     padding: 10px;
 
-    border-radius: 4px;
+    border-radius: 5px;
     &-item {
       display: flex;
       justify-content: flex-start;
@@ -48,8 +42,6 @@
       &__label {
         font-weight: 600;
         font-size: 14px;
-        line-height: 17px;
-        letter-spacing: 0.15px;
         color: #000000;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -63,7 +55,6 @@
       }
     }
   }
- 
 }
 
 .sidebar__list-item:hover {
@@ -75,18 +66,24 @@
   box-shadow: 2px 2px 2px rgba(0, 0, 1, 0.4);
 }
 .close__active {
-  opacity: .5;
-  transition: .5;
+  opacity: 0.5;
+  transition: 0.5;
 }
 .close__active:hover {
   opacity: 1;
 }
 .ellipse {
-  width: 10px;
-  height: 10px;
-  left: 32px;
-  top: 190px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 11px;
+  color: black;
+  border: 2px solid #7C7C7C;
+  text-align: center;
 }
 
 // li {
