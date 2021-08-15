@@ -13,7 +13,7 @@ function App() {
     { color: "#FFBBCC" },
     { color: "#B6E6BD" },
     { color: "#C355F5" },
-    { color: "#09011A" },
+    { color: "#fdbb2d" },
     { color: "#FF6464" },
   ];
   const [lists, setLists] = useState(null);
@@ -38,6 +38,9 @@ function App() {
       return item;
     });
     setLists(newArr);
+    axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
+      setLists(data);
+    });
   };
 
   const removeItem = (id) => {
@@ -61,54 +64,138 @@ function App() {
     setLists(newArr);
   };
 
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm("are you sure ...")) {
+      console.log(listId + "|" + taskId);
+      const newArr = lists.map((item) => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter((task) => task.id !== taskId);
+        }
+        return item;
+      });
+      setLists(newArr);
+
+      axios.delete(`http://localhost:3001/tasks/${taskId}`).catch(() => {
+        alert("failed to delete task");
+      });
+    }
+  };
+
+  const onEditTask = (listId, taskObj) => {
+    const { text, id } = taskObj;
+    console.log(listId + "|" + id + "|" + text);
+
+    const newTaskText = window.prompt("...new text...", text);
+    if (!newTaskText) {
+      return;
+    }
+    const newArr = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = item.tasks.map((task) => {
+          if (task.id === id) {
+            task.text = newTaskText;
+          }
+          return task;
+        });
+      }
+      return item;
+    });
+    setLists(newArr);
+
+    axios
+      .patch(`http://localhost:3001/tasks/${id}`, { text: newTaskText })
+      .catch(() => {
+        alert("failed to rename");
+      });
+  };
+
+  const onCompleteTask = (listId, taskId, completed) => {
+    const newArr = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = item.tasks.map((task) => {
+          if (task.id === taskId) {
+            task.completed = completed;
+          }
+          return task;
+        });
+      }
+      return item;
+    });
+    setLists(newArr);
+
+    axios
+      .patch(`http://localhost:3001/tasks/${taskId}`, { completed })
+      .catch(() => {
+        alert("failed to rename");
+      });
+
+  };
+
   return (
     <div className="todo__wrapper">
-    <div  className="todo">
-      <div className="app-sidebar">
-        {lists ? (
-          <Sidebar
-            list={lists}
-            addItem={addItem}
-            removeItem={removeItem}
-            colors={colors}
-            className="todo__sidebar"
-            onClickItem={(item) => {
-              setActiveItem(item);
-              if (activeAllTasks === true) {
-                setActiveAllTasks(!activeAllTasks);
-              }
-            }}
-       
-            activeItem={activeItem}
-            setActiveAllTasks={setActiveAllTasks}
-            activeAllTasks={activeAllTasks}
-          />
-        ) : (
-          <Spinner />
-        )}
-      </div>
-      <div className="app-content">
-        {!activeAllTasks ? (
-          <Content
-            onEditTitle={onEditListTitle}
-            tasks={activeItem}
-            addTask={addTask}
-            className="todo__content"
-          />
-        ) : (
-          lists &&
-          lists.map((list) => (
+      <div className="todo">
+        <div className="app-sidebar">
+          {lists ? (
+            <Sidebar
+              setLists={setLists}
+              list={lists}
+              addItem={addItem}
+              removeItem={removeItem}
+              colors={colors}
+              className="todo__sidebar"
+              onClickItem={(item) => {
+                if (!item) {
+                  setActiveItem(null);
+                }
+                setActiveItem(item);
+                if (activeAllTasks === true) {
+                  setActiveAllTasks(!activeAllTasks);
+                }
+              }}
+              activeItem={activeItem}
+              setActiveAllTasks={setActiveAllTasks}
+              activeAllTasks={activeAllTasks}
+            />
+          ) : (
+            <Spinner />
+          )}
+        </div>
+        <div className="app-content">
+          {!activeAllTasks ? (
             <Content
-              key={list.id}
+              tasks={activeItem}
+              // _____
+              setLists={setLists}
+              // _____
               onEditTitle={onEditListTitle}
-              tasks={list}
+              onRemoveTask={onRemoveTask}
+              onEditTask={onEditTask}
               addTask={addTask}
+              onCompleteTask={onCompleteTask}
+              // _____
               className="todo__content"
             />
-          ))
-        )}
+          ) : (
+            lists &&
+            lists.map((list) => (
+              <Content
+                tasks={list}
+                // _____
+                setLists={setLists}
+                // _____
+                onEditTitle={onEditListTitle}
+                onRemoveTask={onRemoveTask}
+                onEditTask={onEditTask}
+                addTask={addTask}
+                onCompleteTask={onCompleteTask}
+                // _____
+                className="todo__content"
+                key={list.id}
+              />
+            ))
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

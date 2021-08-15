@@ -7,11 +7,22 @@ import editButton from "../../assets/img/edit-button.svg";
 import "./Content.scss";
 import Task from "./AddTaskForm/task/Task";
 
-const Content = ({ tasks, onEditTitle, addTask }) => {
+const Content = ({
+  tasks,
+  onEditTitle,
+  addTask,
+  onRemoveTask,
+  onEditTask,
+  setLists,
+  onCompleteTask,
+}) => {
   if (!tasks) return null;
 
   const editTitle = () => {
     const newLabel = window.prompt("Name of list:", tasks.label);
+    if (!newLabel) {
+      return;
+    }
     if (newLabel) {
       onEditTitle(tasks.id, newLabel);
     }
@@ -30,7 +41,7 @@ const Content = ({ tasks, onEditTitle, addTask }) => {
 
   return (
     <div className="content">
-      <div  className="line"></div>
+      <div className="line"></div>
       <div className="header-wrapper">
         <div className="header">
           <h2 style={headerLabelColor} className="header-label">
@@ -42,8 +53,18 @@ const Content = ({ tasks, onEditTitle, addTask }) => {
         </div>
         <div className="line"></div>
       </div>
-      <Task tasks={tasks} />
-      <AddTaskForm tasks={tasks} addTask={addTask} />
+      <Task
+        onCompleteTask={onCompleteTask}
+        onEditTask={onEditTask}
+        onRemoveTask={onRemoveTask}
+        tasks={tasks}
+      />
+      <AddTaskForm
+        key={tasks.id}
+        setLists={setLists}
+        tasks={tasks}
+        addTask={addTask}
+      />
     </div>
   );
 };

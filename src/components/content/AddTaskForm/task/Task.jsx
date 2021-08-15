@@ -6,22 +6,26 @@ import close from "../../../../assets/img/close.svg";
 
 import "./Task.scss";
 
-function Task({ tasks }) {
-  const onRemoveTask = (taskId) => {
-    if (window.confirm("are you sure ...")) {
-      axios.delete(" http://localhost:3001/tasks/" + taskId).catch(() => {
-        alert("failed to delete task");
-      });
-    }
-  };
+function Task({ tasks, onRemoveTask, onEditTask, onCompleteTask }) {
+  if (!tasks.tasks) return null;
+  
 
   const elements = tasks.tasks.map((item) => {
-    const { id, completed, text } = item;
+    const { id, completed, text, listId } = item;
+
+    const onChangeCheckbox = (event) => {
+      onCompleteTask(listId, id, event.target.checked);
+    };
 
     return (
       <div key={id} className="tasks__items">
-        <div  className="checkbox">
-          <input checked={completed} id={`task-${id}`} type="checkbox" />
+        <div className="checkbox">
+          <input
+            onChange={onChangeCheckbox}
+            id={`task-${id}`}
+            type="checkbox"
+            checked={completed}
+          />
 
           <label htmlFor={`task-${id}`}>
             <svg
@@ -44,11 +48,14 @@ function Task({ tasks }) {
         <span className="tasks-text">{text}</span>
 
         <div className="tasks-actions">
-          <div className="edit-button">
+          <div
+            onClick={() => onEditTask(listId, { id, text })}
+            className="edit-button"
+          >
             <img src={editButton} alt="" />
           </div>
-          <div >
-            <img  className="close-btn" src={close} alt="" />
+          <div onClick={() => onRemoveTask(listId, id)}>
+            <img className="close-btn" src={close} alt="" />
           </div>
         </div>
       </div>

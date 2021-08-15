@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import AddListBtn from "./addListBtn/AddListBtn";
 import "./Sidebar.scss";
 import labelIcon from "../../assets/img/sidebar-label-icon.svg";
@@ -13,12 +15,13 @@ const Sidebar = ({
   activeItem,
   setActiveAllTasks,
   activeAllTasks,
-  
+  setLists,
 }) => {
   if (!list) return null;
 
   const onClickAllTask = () => {
     setActiveAllTasks(!activeAllTasks);
+
   };
 
   const elements = list.map((item) => {
@@ -48,7 +51,9 @@ const Sidebar = ({
         </div>
         <div className="sidebar__list-item__label">{label}</div>
         <img
-          onClick={() => removeItem(id)}
+          onClick={() =>{ removeItem(id)
+            onClickAllTask()
+          }}
           className={classNameClose}
           src={close}
           alt=""
@@ -72,7 +77,7 @@ const Sidebar = ({
           <span>All tasks</span>
         </div>
         <div>{elements}</div>
-        <AddListBtn addItem={addItem} colors={colors} />
+        <AddListBtn setLists={setLists} addItem={addItem} colors={colors} />
       </div>
     </div>
   );

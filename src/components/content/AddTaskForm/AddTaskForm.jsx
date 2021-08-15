@@ -5,7 +5,7 @@ import "./AddTaskForm.scss";
 
 import plus from "../../../assets/img/plus.svg";
 
-function AddTaskForm({ tasks, addTask }) {
+function AddTaskForm({ tasks, addTask, setLists }) {
   const [visibleForm, setVisibleForm] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +31,7 @@ function AddTaskForm({ tasks, addTask }) {
         alert("error while adding task");
       })
       .finally(() => {
+   
         setIsLoading(false);
       });
   };

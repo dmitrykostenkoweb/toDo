@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./AddListBtn.scss";
@@ -6,13 +6,18 @@ import "./AddListBtn.scss";
 import closeFull from "../../../assets/img/close-full.svg";
 import plus from "../../../assets/img/plus.svg";
 
-const AddListBtn = ({ colors, addItem }) => {
+const AddListBtn = ({ colors, addItem, setLists }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedColor, setSelectedColor] = useState(colors[0].color);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
+  useEffect(() => {
+    axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
+      setLists(data);
+      
+    });
+  }, [isLoading]);
 
 
 
