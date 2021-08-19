@@ -1,51 +1,80 @@
 {
   "lists": [
     {
-      "label": "shopping",
+      "label": "Moje zakupy 1",
       "color": "#FF6464",
       "id": 1
     },
     {
-      "label": "to-do list",
+      "label": "mój dzień",
       "color": "#C355F5",
       "id": 2
     },
     {
-      "label": "books",
-      "color": "#64C4ED",
-      "id": 3
+      "label": "anton",
+      "color": "#fdbb2d",
+      "id": 4
     }
   ],
   "tasks": [
     {
       "listId": 1,
-      "text": "BMW M2 Competition",
-      "completed": true,
+      "text": "BMW M2",
+      "completed": false,
       "id": 1
     },
     {
       "listId": 1,
       "text": "playstation 5",
-      "completed": false,
+      "completed": true,
       "id": 2
     },
     {
       "listId": 2,
-      "text": "go to study",
-      "completed": true,
+      "text": "coding ",
+      "completed": false,
       "id": 3
     },
     {
       "listId": 2,
-      "text": "find a dream job",
-      "completed": false,
+      "text": "listen music",
+      "completed": true,
       "id": 4
     },
     {
-      "listId": 3,
-      "text": "fgfg",
-      "completed": true,
+      "listId": 2,
+      "text": "test",
+      "completed": false,
       "id": 5
+    },
+    {
+      "text": "ere",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "listId": 1,
+      "text": "dsds",
+      "completed": false,
+      "id": 14
+    },
+    {
+      "listId": 4,
+      "text": "play fortnight",
+      "completed": false,
+      "id": 15
+    },
+    {
+      "listId": 4,
+      "text": "test",
+      "completed": false,
+      "id": 16
+    },
+    {
+      "listId": 4,
+      "text": "test",
+      "completed": true,
+      "id": 17
     }
   ]
 }

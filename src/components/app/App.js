@@ -29,6 +29,8 @@ function App() {
   const addItem = (newItem) => {
     const newArr = [...lists, newItem];
     setLists(newArr);
+    setActiveAllTasks(true)
+
   };
   const addTask = (listId, newTaskObj) => {
     const newArr = lists.map((item) => {
@@ -41,6 +43,8 @@ function App() {
     axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
       setLists(data);
     });
+    setActiveAllTasks(true)
+
   };
 
   const removeItem = (id) => {
