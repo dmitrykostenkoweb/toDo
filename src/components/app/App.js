@@ -21,7 +21,7 @@ function App() {
   const [activeAllTasks, setActiveAllTasks] = useState(true);
 
   useEffect(() => {
-    axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
+    axios.get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks").then(({ data }) => {
       setLists(data);
     });
   }, []);
@@ -40,7 +40,7 @@ function App() {
       return item;
     });
     setLists(newArr);
-    axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
+    axios.get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks").then(({ data }) => {
       setLists(data);
     });
     setActiveAllTasks(true)
@@ -53,7 +53,7 @@ function App() {
     const after = lists.slice(index + 1);
     const newArr = [...before, ...after];
     setLists(newArr);
-    axios.delete("http://localhost:3001/lists/" + id).catch(() => {
+    axios.delete("https://to-do-app-2.herokuapp.com/api/lists/" + id).catch(() => {
       alert("error while deleting list");
     });
   };
@@ -79,7 +79,7 @@ function App() {
       });
       setLists(newArr);
 
-      axios.delete(`http://localhost:3001/tasks/${taskId}`).catch(() => {
+      axios.delete(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`).catch(() => {
         alert("failed to delete task");
       });
     }
@@ -107,7 +107,7 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`http://localhost:3001/tasks/${id}`, { text: newTaskText })
+      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`, { text: newTaskText })
       .catch(() => {
         alert("failed to rename");
       });
@@ -128,7 +128,7 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`http://localhost:3001/tasks/${taskId}`, { completed })
+      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`, { completed })
       .catch(() => {
         alert("failed to rename");
       });

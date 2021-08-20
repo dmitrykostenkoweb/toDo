@@ -13,7 +13,7 @@ const AddListBtn = ({ colors, addItem, setLists }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(" http://localhost:3001/lists?_embed=tasks").then(({ data }) => {
+    axios.get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks").then(({ data }) => {
       setLists(data);
       
     });
@@ -31,7 +31,7 @@ const AddListBtn = ({ colors, addItem, setLists }) => {
     }
     setIsLoading(true);
     axios
-      .post("  http://localhost:3001/lists", {
+      .post("https://to-do-app-2.herokuapp.com/api/lists", {
         label: inputValue,
         color: selectedColor,
       })
