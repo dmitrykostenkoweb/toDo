@@ -38,7 +38,7 @@
     {
       "listId": 2,
       "text": "listen music",
-      "completed": true,
+      "completed": false,
       "id": 4
     },
     {
@@ -61,13 +61,13 @@
     {
       "listId": 4,
       "text": "play fortnight",
-      "completed": false,
+      "completed": true,
       "id": 15
     },
     {
       "listId": 4,
       "text": "test",
-      "completed": false,
+      "completed": true,
       "id": 16
     },
     {
