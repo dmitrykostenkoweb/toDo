@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import AddListBtn from "./addListBtn/AddListBtn";
 import "./Sidebar.scss";
 import labelIcon from "../../assets/img/sidebar-label-icon.svg";
+import folder from "../../assets/img/folders.svg";
 import close from "../../assets/img/close.svg";
 
 const Sidebar = ({
@@ -17,11 +17,12 @@ const Sidebar = ({
   activeAllTasks,
   setLists,
 }) => {
+  const [showFolders, setShowFolders] = useState(false);
+
   if (!list) return null;
 
   const onClickAllTask = () => {
     setActiveAllTasks(!activeAllTasks);
-
   };
 
   const elements = list.map((item) => {
@@ -49,10 +50,13 @@ const Sidebar = ({
         <div style={ellipseStyle} className="ellipse">
           {item.tasks && `${item.tasks.length}`}
         </div>
-        <div className="sidebar__list-item__label">{label}</div>
+        <div title={label} className="sidebar__list-item__label">
+          {label}
+        </div>
         <img
-          onClick={() =>{ removeItem(id)
-            onClickAllTask()
+          onClick={() => {
+            removeItem(id);
+            onClickAllTask();
           }}
           className={classNameClose}
           src={close}
@@ -61,6 +65,11 @@ const Sidebar = ({
       </div>
     );
   });
+
+  let foldersStyle = "sidebar__element";
+  if (showFolders === true) {
+    foldersStyle += " sidebar__element__active";
+  }
 
   return (
     <div className="sidebar">
@@ -74,9 +83,23 @@ const Sidebar = ({
           }
         >
           <img src={labelIcon} alt="" />
-          <span>All tasks</span>
+          <span>All tasks </span>
         </div>
-        <div>{elements}</div>
+        <div
+          onClick={() => {
+            setShowFolders(!showFolders);
+          }}
+          className={
+            !showFolders
+              ? "sidebar__label sidebar-btn  "
+              : "sidebar__label sidebar-btn sidebar-btn__active"
+          }
+        >
+          <img className="sidebar-btn__img" src={folder} alt="" />
+          <span>{showFolders ? "Hide folders" : "Show folders"}</span>
+        </div>
+
+        <div className={foldersStyle}>{elements}</div>
         <AddListBtn setLists={setLists} addItem={addItem} colors={colors} />
       </div>
     </div>

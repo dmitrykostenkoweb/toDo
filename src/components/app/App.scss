@@ -1,37 +1,58 @@
 .todo__wrapper {
-  position: relative;
-  margin: 0 auto;
-  width: calc(100vw - 100px);
+  margin: auto;
   max-width: 768px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 200px);
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .todo {
   width: 100%;
   height: 90%;
-  overflow: scroll;
+  overflow: auto;
+
   border: 1px solid rgba(128, 128, 128, 0.3);
   box-shadow: 10px 10px 20px rgba(128, 128, 128, 0.3);
   border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+
+  display: grid;
+  grid-template-columns: 0fr 0.7fr 1.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". sidebar content";
 }
-// .active {
-//   border: 1px solid black;
-// }
+
 .app-sidebar {
-  position: sticky;
-  top: 0;
-  left: 0;
   background: #e5e5e5a1;
+  grid-area: sidebar;
 }
 .app-content {
- 
+  grid-area: content;
+}
+
+@media screen and (max-width: 850px) {
+  .todo__wrapper {
+    width: calc(100vw - 10px);
+    max-width: 768px;
+    height: calc(100vh - 10px);
+  }
+  .todo {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: none;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .app-sidebar {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .app-content {
+    grid-area: 2 / 1 / 3 / 2;
+  }
 }
