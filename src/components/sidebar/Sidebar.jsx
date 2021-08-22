@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import AddListBtn from "./addListBtn/AddListBtn";
 import "./Sidebar.scss";
 import labelIcon from "../../assets/img/sidebar-label-icon.svg";
 import folder from "../../assets/img/folders.svg";
-import close from "../../assets/img/close.svg";
+import remove from "../../assets/img/close.svg";
+import closeFull from "../../assets/img/close-full.svg";
+
 
 const Sidebar = ({
   list,
@@ -18,6 +20,20 @@ const Sidebar = ({
   setLists,
 }) => {
   const [showFolders, setShowFolders] = useState(false);
+  // const ref = useRef(null);
+
+  // const handleClickOutside = (event) => {
+  //   if (ref.current && !ref.current.contains(event.target)) {
+  //     setShowFolders(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("click", handleClickOutside, true);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside, true);
+  //   };
+  // });
 
   if (!list) return null;
 
@@ -27,18 +43,18 @@ const Sidebar = ({
 
   const elements = list.map((item) => {
     const { id, label, color } = item;
-    const ellipseStyle = {
+    const circleStyle = {
       backgroundColor: `${color}`,
     };
 
-    let classNameList = "sidebar__list";
+    let classNameList = "sidebar__item";
     if (activeItem && activeItem.id === id && activeAllTasks === false) {
-      classNameList += " sidebar-item__active";
+      classNameList += " sidebar__item-active";
     }
 
-    let classNameClose = "sidebar__list-item__close";
+    let classNameRemove = "sidebar__item-remove";
     if (activeItem && activeItem.id === id && activeAllTasks === false) {
-      classNameClose += " close__active";
+      classNameRemove += " sidebar__item-remove__active";
     }
 
     return (
@@ -47,61 +63,83 @@ const Sidebar = ({
         onClick={onClickItem ? () => onClickItem(item) : null}
         className={classNameList}
       >
-        <div style={ellipseStyle} className="ellipse">
+        <div style={circleStyle} className="circle">
           {item.tasks && `${item.tasks.length}`}
         </div>
-        <div title={label} className="sidebar__list-item__label">
+
+        <div title={label} className="sidebar__item-text">
           {label}
         </div>
+
         <img
           onClick={() => {
             removeItem(id);
             onClickAllTask();
           }}
-          className={classNameClose}
-          src={close}
+          className={classNameRemove}
+          src={remove}
           alt=""
         />
       </div>
     );
   });
 
-  let foldersStyle = "sidebar__element";
-  if (showFolders === true) {
-    foldersStyle += " sidebar__element__active";
-  }
-
   return (
     <div className="sidebar">
-      <div className="sidebar__wrapper">
-        <div
-          onClick={onClickAllTask}
-          className={
-            !activeAllTasks
-              ? "sidebar__label"
-              : "sidebar__label sidebar-item__active"
-          }
-        >
-          <img src={labelIcon} alt="" />
-          <span>All tasks </span>
-        </div>
-        <div
-          onClick={() => {
-            setShowFolders(!showFolders);
-          }}
-          className={
-            !showFolders
-              ? "sidebar__label sidebar-btn  "
-              : "sidebar__label sidebar-btn sidebar-btn__active"
-          }
-        >
-          <img className="sidebar-btn__img" src={folder} alt="" />
-          <span>{showFolders ? "Hide folders" : "Show folders"}</span>
-        </div>
-
-        <div className={foldersStyle}>{elements}</div>
-        <AddListBtn setLists={setLists} addItem={addItem} colors={colors} />
+      {/* All tasks */}
+      <div
+        onClick={onClickAllTask}
+        className={
+          !activeAllTasks
+            ? "sidebar__item"
+            : "sidebar__item sidebar__item-active"
+        }
+      >
+        <img src={labelIcon} alt="" />
+        <span className="sidebar__item-text">All tasks </span>
       </div>
+
+      {/* Hide/Show folders */}
+      <div
+        onClick={() => {
+          setShowFolders(!showFolders);
+        }}
+        className={
+          !showFolders
+            ? "sidebar__item hideShowFolderBtn  "
+            : "sidebar__item hideShowFolderBtn sidebar__item-active"
+        }
+      >
+        <img src={folder} alt="" />
+        <span>{showFolders ? "Hide folders" : "Show folders"}</span>
+      </div>
+
+      {/* ___________ */}
+
+      <div
+        // ref={ref}
+        className={
+          showFolders
+            ? "sidebar__items  sidebar__items-active "
+            : "sidebar__items"
+        }
+      >
+        <button
+          onClick={() => setShowFolders(false)}
+          className="
+          sidebar__items__close-btn
+          add-list-popup__close-btn"
+        >
+          <img src={closeFull} alt="" />
+        </button>
+        {elements}
+      </div>
+
+      {/* ___________ */}
+
+      <AddListBtn setLists={setLists} addItem={addItem} colors={colors} />
+
+      {/* ___________ */}
     </div>
   );
 };
