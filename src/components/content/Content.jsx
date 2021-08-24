@@ -28,7 +28,7 @@ const Content = ({
       onEditTitle(tasks.id, newLabel);
     }
     axios
-      .patch(" https://to-do-app-2.herokuapp.com/api/lists/" + tasks.id, {
+      .patch(" https://kost-todo.herokuapp.com/api/lists/" + tasks.id, {
         label: newLabel,
       })
       .catch(() => {

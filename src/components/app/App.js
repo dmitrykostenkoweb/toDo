@@ -24,7 +24,7 @@ function App() {
   const [toggleConfirm, setToggleConfirm] = useState(false);
   useEffect(() => {
     axios
-      .get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks")
+      .get("https://kost-todo.herokuapp.com/api/lists?_embed=tasks")
       .then(({ data }) => {
         setLists(data);
       });
@@ -47,7 +47,7 @@ function App() {
     });
     setLists(newArr);
     axios
-      .get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks")
+      .get("https://kost-todo.herokuapp.com/api/lists?_embed=tasks")
       .then(({ data }) => {
         setLists(data);
       });
@@ -79,7 +79,7 @@ function App() {
     setLists(newArr);
 
     axios
-      .delete(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`)
+      .delete(`https://kost-todo.herokuapp.com/api/tasks/${id}`)
       .catch(() => {
         alert("failed to delete task");
       });
@@ -94,7 +94,7 @@ function App() {
     const newArr = [...before, ...after];
     setLists(newArr);
     axios
-      .delete("https://to-do-app-2.herokuapp.com/api/lists/" + id)
+      .delete("https://kost-todo.herokuapp.com/api/lists/" + id)
       .catch(() => {
         alert("error while deleting list");
       });
@@ -134,7 +134,7 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`, {
+      .patch(`https://kost-todo.herokuapp.com/api/tasks/${id}`, {
         text: newTaskText,
       })
       .catch(() => {
@@ -160,7 +160,7 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`, {
+      .patch(`https://kost-todo.herokuapp.com/api/tasks/${taskId}`, {
         completed,
       })
       .catch(() => {

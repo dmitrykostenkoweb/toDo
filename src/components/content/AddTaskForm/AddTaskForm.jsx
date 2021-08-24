@@ -22,7 +22,7 @@ function AddTaskForm({ tasks, addTask }) {
     };
     setIsLoading(true);
     axios
-      .post("https://to-do-app-2.herokuapp.com/api/tasks/", newTaskObj)
+      .post("https://kost-todo.herokuapp.com/api/tasks/", newTaskObj)
       .then(({ data }) => {
         addTask(tasks.id, newTaskObj);
         toggleFormVisible();
