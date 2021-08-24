@@ -1,14 +1,12 @@
 import React from "react";
-import axios from "axios";
 
 import editButton from "../../../../assets/img/edit-button.svg";
 import close from "../../../../assets/img/close.svg";
 
 import "./Task.scss";
 
-function Task({ tasks, onRemoveTask, onEditTask, onCompleteTask }) {
+function Task({ tasks, setIds, onEditTask, onCompleteTask, setToggleConfirm }) {
   if (!tasks.tasks) return null;
-  
 
   const elements = tasks.tasks.map((item) => {
     const { id, completed, text, listId } = item;
@@ -54,7 +52,12 @@ function Task({ tasks, onRemoveTask, onEditTask, onCompleteTask }) {
           >
             <img src={editButton} alt="" />
           </div>
-          <div onClick={() => onRemoveTask(listId, id)}>
+          <div
+            onClick={() => {
+              setToggleConfirm(true);
+              setIds({ listId, id });
+            }}
+          >
             <img className="close-btn" src={close} alt="" />
           </div>
         </div>
@@ -63,12 +66,12 @@ function Task({ tasks, onRemoveTask, onEditTask, onCompleteTask }) {
   });
 
   return (
-    <div>
+    <>
       <div className="tasks">
-        {!tasks.tasks.length && <h2>No Tasks</h2>}
+        {!tasks.tasks.length && <h3>No Tasks</h3>}
         {elements}
       </div>
-    </div>
+    </>
   );
 }
 

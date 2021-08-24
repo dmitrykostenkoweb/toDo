@@ -4,6 +4,7 @@ import "./App.scss";
 import Sidebar from "../sidebar/Sidebar";
 import Content from "../content/Content";
 import Spinner from "../Spinner/Spinner";
+import Confirm from "../Confirm/Confirm";
 
 function App() {
   const colors = [
@@ -19,19 +20,24 @@ function App() {
   const [lists, setLists] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
   const [activeAllTasks, setActiveAllTasks] = useState(true);
-
+  const [ids, setIds] = useState(null);
+  const [toggleConfirm, setToggleConfirm] = useState(false);
   useEffect(() => {
-    axios.get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks").then(({ data }) => {
-      setLists(data);
-    });
+    axios
+      .get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks")
+      .then(({ data }) => {
+        setLists(data);
+      });
   }, []);
+
+  // addition
 
   const addItem = (newItem) => {
     const newArr = [...lists, newItem];
     setLists(newArr);
-    setActiveAllTasks(true)
-
+    setActiveAllTasks(true);
   };
+
   const addTask = (listId, newTaskObj) => {
     const newArr = lists.map((item) => {
       if (item.id === listId) {
@@ -40,24 +46,62 @@ function App() {
       return item;
     });
     setLists(newArr);
-    axios.get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks").then(({ data }) => {
-      setLists(data);
-    });
-    setActiveAllTasks(true)
-
+    axios
+      .get("https://to-do-app-2.herokuapp.com/api/lists?_embed=tasks")
+      .then(({ data }) => {
+        setLists(data);
+      });
+    setActiveAllTasks(true);
   };
 
-  const removeItem = (id) => {
+  /////////////////////////////////////////////////////////////////////////////////
+
+  // removals
+  const answerYes = () => {
+    console.log(ids.toString.length);
+    if (ids.toString.length === 0) {
+      removeTask();
+    } else {
+      removeItem();
+    }
+    setToggleConfirm(false);
+  };
+
+  const removeTask = () => {
+    const { listId, id } = ids;
+
+    const newArr = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = item.tasks.filter((task) => task.id !== id);
+      }
+      return item;
+    });
+    setLists(newArr);
+
+    axios
+      .delete(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`)
+      .catch(() => {
+        alert("failed to delete task");
+      });
+  };
+
+  const removeItem = () => {
+    const id = ids;
+    console.log(id);
     const index = lists.findIndex((elem) => elem.id === id);
     const before = lists.slice(0, index);
     const after = lists.slice(index + 1);
     const newArr = [...before, ...after];
     setLists(newArr);
-    axios.delete("https://to-do-app-2.herokuapp.com/api/lists/" + id).catch(() => {
-      alert("error while deleting list");
-    });
+    axios
+      .delete("https://to-do-app-2.herokuapp.com/api/lists/" + id)
+      .catch(() => {
+        alert("error while deleting list");
+      });
   };
 
+  /////////////////////////////////////////////////////////////////////////////////
+  // correction
   const onEditListTitle = (id, label) => {
     const newArr = lists.map((item) => {
       if (item.id === id) {
@@ -66,23 +110,6 @@ function App() {
       return item;
     });
     setLists(newArr);
-  };
-
-  const onRemoveTask = (listId, taskId) => {
-    if (window.confirm("are you sure ...")) {
-      console.log(listId + "|" + taskId);
-      const newArr = lists.map((item) => {
-        if (item.id === listId) {
-          item.tasks = item.tasks.filter((task) => task.id !== taskId);
-        }
-        return item;
-      });
-      setLists(newArr);
-
-      axios.delete(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`).catch(() => {
-        alert("failed to delete task");
-      });
-    }
   };
 
   const onEditTask = (listId, taskObj) => {
@@ -107,12 +134,17 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`, { text: newTaskText })
+      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${id}`, {
+        text: newTaskText,
+      })
       .catch(() => {
         alert("failed to rename");
       });
   };
 
+  /////////////////////////////////////////////////////////////////////////////////
+
+  // completion
   const onCompleteTask = (listId, taskId, completed) => {
     const newArr = lists.map((item) => {
       if (item.id === listId) {
@@ -128,16 +160,22 @@ function App() {
     setLists(newArr);
 
     axios
-      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`, { completed })
+      .patch(`https://to-do-app-2.herokuapp.com/api/tasks/${taskId}`, {
+        completed,
+      })
       .catch(() => {
         alert("failed to rename");
       });
-
   };
+  /////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="todo__wrapper">
       <div className="todo">
+        {toggleConfirm && (
+          <Confirm answerYes={answerYes} setToggleConfirm={setToggleConfirm} />
+        )}
+
         <div className="app-sidebar">
           {lists ? (
             <Sidebar
@@ -159,6 +197,8 @@ function App() {
               activeItem={activeItem}
               setActiveAllTasks={setActiveAllTasks}
               activeAllTasks={activeAllTasks}
+              setToggleConfirm={setToggleConfirm}
+              setIds={setIds}
             />
           ) : (
             <Spinner />
@@ -170,9 +210,10 @@ function App() {
               tasks={activeItem}
               // _____
               setLists={setLists}
+              setToggleConfirm={setToggleConfirm}
               // _____
               onEditTitle={onEditListTitle}
-              onRemoveTask={onRemoveTask}
+              setIds={setIds}
               onEditTask={onEditTask}
               addTask={addTask}
               onCompleteTask={onCompleteTask}
@@ -186,9 +227,10 @@ function App() {
                 tasks={list}
                 // _____
                 setLists={setLists}
+                setToggleConfirm={setToggleConfirm}
                 // _____
                 onEditTitle={onEditListTitle}
-                onRemoveTask={onRemoveTask}
+                setIds={setIds}
                 onEditTask={onEditTask}
                 addTask={addTask}
                 onCompleteTask={onCompleteTask}

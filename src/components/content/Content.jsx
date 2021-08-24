@@ -11,10 +11,11 @@ const Content = ({
   tasks,
   onEditTitle,
   addTask,
-  onRemoveTask,
+  setIds,
   onEditTask,
   setLists,
   onCompleteTask,
+  setToggleConfirm
 }) => {
   if (!tasks) return null;
 
@@ -41,7 +42,7 @@ const Content = ({
 
   return (
     <div className="content">
-      <div className="line"></div>
+
       <div className="header-wrapper">
         <div className="header">
           <h2 style={headerLabelColor} className="header-label">
@@ -56,7 +57,8 @@ const Content = ({
       <Task
         onCompleteTask={onCompleteTask}
         onEditTask={onEditTask}
-        onRemoveTask={onRemoveTask}
+        setIds={setIds}
+        setToggleConfirm={setToggleConfirm}
         tasks={tasks}
       />
       <AddTaskForm

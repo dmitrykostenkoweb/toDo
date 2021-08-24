@@ -7,17 +7,17 @@ import folder from "../../assets/img/folders.svg";
 import remove from "../../assets/img/close.svg";
 import closeFull from "../../assets/img/close-full.svg";
 
-
 const Sidebar = ({
   list,
   colors,
   addItem,
-  removeItem,
-  onClickItem,
+   onClickItem,
   activeItem,
   setActiveAllTasks,
   activeAllTasks,
   setLists,
+  setToggleConfirm,
+  setIds
 }) => {
   const [showFolders, setShowFolders] = useState(false);
   // const ref = useRef(null);
@@ -73,8 +73,9 @@ const Sidebar = ({
 
         <img
           onClick={() => {
-            removeItem(id);
+            setIds(id);
             onClickAllTask();
+            setToggleConfirm(true)
           }}
           className={classNameRemove}
           src={remove}

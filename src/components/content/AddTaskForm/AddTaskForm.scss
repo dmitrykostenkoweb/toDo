@@ -39,17 +39,18 @@
       height: 40px;
       border-radius: 5px;
     }
-    // &-input::placeholder {
-    //     padding: 20px;
-    //   font-weight: 400;
-    //   font-size: 14px;
-    //   color: #c7c7c7;
-    // }
-    &-input, select, textarea {
-        padding: 20px;
+    &-input::placeholder {
       font-weight: 400;
       font-size: 14px;
-      color: black
+      color: #c7c7c7;
+    }
+    &-input,
+    select,
+    textarea {
+      padding: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      color: black;
     }
     &-btns {
       display: flex;
@@ -72,9 +73,8 @@
     &__addBtn:hover {
       background: #15af6c;
     }
-    &__addBtn:disabled{
+    &__addBtn:disabled {
       background: #d8d8d8;
-
     }
     &__cancelBtn {
       width: 100px;
@@ -95,6 +95,16 @@
     &__cancelBtn:hover {
       background: #c5c5c5;
       color: white;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .add-tasks__form {
+    &-active {
+      &-input {
+        max-width: 280px;
+      }
     }
   }
 }

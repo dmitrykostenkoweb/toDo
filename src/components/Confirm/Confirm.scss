@@ -1,0 +1,62 @@
+.remove {
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+    height: 200px;
+
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 1, 0.4);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &-label {
+    font-weight: 400;
+    font-size: 18px;
+    color: #9c9c9c;
+  }
+  &-btns__wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &-btn {
+    width: 100px;
+    height: 35px;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+}
+
+.btn-yes {
+  background: #4dd599;
+}
+.btn-no {
+  background: #f4f6f8;
+  color: #9c9c9c;
+}
+
+.btn-yes:hover {
+  background: #15af6c;
+}
+.btn-no:hover {
+  background: #c5c5c5;
+  color: white;
+}
