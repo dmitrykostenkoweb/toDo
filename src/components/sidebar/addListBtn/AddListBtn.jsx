@@ -31,7 +31,7 @@ const AddListBtn = ({ colors, addItem, setLists }) => {
     }
     setIsLoading(true);
     axios
-      .post("https://kost-todo.herokuapp.com//api/lists", {
+      .post("https://kost-todo.herokuapp.com/api/lists", {
         label: inputValue,
         color: selectedColor,
       })
