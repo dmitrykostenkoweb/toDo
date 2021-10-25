@@ -10,11 +10,7 @@
       "color": "#C355F5",
       "id": 2
     },
-    {
-      "label": "anton",
-      "color": "#fdbb2d",
-      "id": 4
-    }
+
   ],
   "tasks": [
     {
@@ -41,40 +37,6 @@
       "completed": false,
       "id": 4
     },
-    {
-      "listId": 2,
-      "text": "test",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "text": "ere",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "listId": 1,
-      "text": "dsds",
-      "completed": false,
-      "id": 14
-    },
-    {
-      "listId": 4,
-      "text": "play fortnight",
-      "completed": true,
-      "id": 15
-    },
-    {
-      "listId": 4,
-      "text": "test",
-      "completed": true,
-      "id": 16
-    },
-    {
-      "listId": 4,
-      "text": "test",
-      "completed": true,
-      "id": 17
-    }
+  
   ]
 }
